@@ -1,12 +1,13 @@
 import { Router } from "express";
+import { SessionController } from "../controllers/session.controller";
 
 
 const router: Router = Router()
 /*
     LOGIN ROUTES
 */
-router.get('/logout', sessionValidations.validateGetsessions, sessionController.getsessions)
+router.get('/logout', SessionValidations.validateGetSessions, SessionController.getSession)
 
-router.post('/login', sessionValidations.validatePostsession, sessionController.postsession)
+router.post('/login', SessionValidations.validatePostSession, SessionController.postSession)
 
 export default router

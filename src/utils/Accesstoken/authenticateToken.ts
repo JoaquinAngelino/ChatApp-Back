@@ -15,6 +15,6 @@ export function authenticateToken(req: Request, res: Response, next: NextFunctio
   })
 }
 
-export function generateToken(user: User): string {
-  return jwt.sign(user, SECRET_1)
+export function generateToken(username: string, password: string): string {
+  return jwt.sign({ username, password }, SECRET_1)
 }
