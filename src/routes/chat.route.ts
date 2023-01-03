@@ -1,6 +1,6 @@
 import { Router } from "express";
 import { ChatController } from "../controllers/chat.controller";
-import { ChatValidations } from "../utils/chat.validation";
+import { ChatValidations } from "../utils/validation/chat.validation";
 
 const router: Router = Router()
 /*

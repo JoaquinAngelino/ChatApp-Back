@@ -1,13 +1,8 @@
-import { ObjectId } from 'mongoose';
-
-
+import { Types } from 'mongoose';
 
 export interface IMessage {
-	_id?: ObjectId;
-
+	_id?: Types.ObjectId;
 	text: string;
-
-	timestamp: number;
-
-	chat: ObjectId;
+	sender: Types.ObjectId;
+	time: number;
 }
