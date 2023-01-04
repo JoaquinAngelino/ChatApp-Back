@@ -5,8 +5,12 @@ export const UserSchema = new Schema<IUser>(
   {
     name: {
       type: String,
-      required: [true, 'Must provide a message text'],
+      required: true,
     },
+    email: [{
+      type: String,
+      required: true
+    }],
     chats: [{
       type: SchemaTypes.ObjectId,
       ref: 'Chat'
