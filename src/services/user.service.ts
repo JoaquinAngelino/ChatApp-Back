@@ -1,21 +1,21 @@
 import { IChat } from "../interfaces/chat.interface"
 
 export const UserService = {
-  async postChat(chat: IChat): Promise<IChat> {
+  async postChat(_chat: IChat): Promise<IChat> {
     return {} as IChat
   },
 
-  async getChat(chatId: string): Promise<IChat> {
+  async getChat(_chatId: string): Promise<IChat> {
 
     return {} as IChat
   },
 
-  async getUserChats(userId: string): Promise<IChat[]> {
+  async getUserChats(_userId: string): Promise<IChat[]> {
 
     return [] as IChat[]
   },
 
-  async deleteChat(chatId: string, userId: string): Promise<IChat>{
+  async deleteChat(_chatId: string, _userId: string): Promise<IChat>{
 
     return {} as IChat
   }

@@ -6,10 +6,10 @@ const router: Router = Router()
 /*
     CHAT ROUTES
 */
-router.get('/chats/:userID', ChatValidations.validateGetChats, ChatController.getChats)
+router.get('/:userID', ChatValidations.validateGetChats, ChatController.getChats)
 
-router.post('/chat', ChatValidations.validatePostChat, ChatController.postChat)
+router.post('/', ChatValidations.validatePostChat, ChatController.postChat)
 
-router.delete('/chat/:chatID', ChatController.deleteChat)
+router.delete('/:chatID', ChatValidations.validateDeleteChat, ChatController.deleteChat)
 
 export default router

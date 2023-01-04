@@ -1,22 +1,26 @@
 import express from 'express'
-import { PORT, MONGO } from './config';
 import chatRoutes from './routes/chat.route';
 import userRoutes from './routes/user.route';
-import { Server } from "socket.io";
 import http from 'http'
 import mongoose from 'mongoose';
 import cors from 'cors'
+import rateLimit from 'express-rate-limit'
+import helmet from 'helmet';
+import { Server } from "socket.io";
+import { PORT, MONGO } from './config';
+
 const app = express()
 
 app.use(express.json())
 app.use(cors({
   origin: '*'
 }));
-
-app.use(chatRoutes)
-app.use(userRoutes)
-// app.use(messageRoutes)
-// app.use(groupRoutes)
+app.use(helmet())
+app.use(rateLimit({ windowMs: 5 * 60 * 1000, max: 20 }))
+app.use('/chat', chatRoutes)
+app.use('/user', userRoutes)
+// app.use('/message',messageRoutes)
+// app.use('group',groupRoutes)
 
 const server = http.createServer(app)
 

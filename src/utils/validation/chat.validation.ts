@@ -3,7 +3,7 @@ import { checkID } from "./checkID";
 
 
 export const ChatValidations = {
-  validatePostChat: async (req: Request, res: Response, next: NextFunction) => {
+  async validatePostChat(req: Request, res: Response, next: NextFunction) {
     const [user1, user2] = req.body as any;
     try {
       checkID(user1)
@@ -14,7 +14,7 @@ export const ChatValidations = {
     }
   },
 
-  validateGetChats: async (req: Request, res: Response, next: NextFunction) => {
+  async validateGetChats(req: Request, res: Response, next: NextFunction) {
     const { userID } = req.params as any;
     try {
       checkID(userID)
@@ -22,19 +22,9 @@ export const ChatValidations = {
     } catch (error) {
       res.status(400).send("Invalid Request")
     }
+  },
+
+  async validateDeleteChat(_req: Request, _res: Response, _next: NextFunction){
   }
 }
 
-// const validate = async (schema, reqData, res, next) => {
-//   try {
-//     await schema.validate(reqData, { abortEarly: false });
-//     next();
-//   } catch (e) {
-//     const errors = e.inner.map(({ path, message, value }) => ({
-//       path,
-//       message,
-//       value,
-//     }));
-//     sendError(res, errors, "Invalid Request");
-//   }
-// };

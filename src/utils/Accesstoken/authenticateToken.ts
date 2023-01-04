@@ -18,5 +18,13 @@ export const TokenController = {
 
   generateToken(username: string, password: string): string {
     return jwt.sign({ username, password }, SECRET)
-  }
+  },
+
+  async deleteToken() {
+
+  },
+  
+  // refreshToken(): String {
+  //   return jwt.sign({ username, password }, SECRET)
+  // }
 }

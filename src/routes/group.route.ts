@@ -1,4 +1,5 @@
 import { Router } from "express";
+import { GroupController } from "../controllers/group.controller";
 
 
 const router: Router = Router()
@@ -6,10 +7,10 @@ const router: Router = Router()
     Group ROUTES
 */
 
-router.get('/groups', GroupValidations.validateGetGroup, GroupController.getGroups)
+router.get('/', GroupController.getGroups)
 
-router.post('/group', GroupController.postGroup)
+router.post('/', GroupController.postGroup)
 
-router.delete('/group/:groupId', GroupController.deleteGroup)
+router.delete('/:groupId', GroupController.deleteGroup)
 
 export default router

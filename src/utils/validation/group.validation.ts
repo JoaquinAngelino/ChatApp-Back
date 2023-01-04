@@ -3,7 +3,7 @@ import { checkID } from "./checkID";
 
 
 export const GroupValidations = {
-  validatePostGroup: async (req: Request, res: Response, next: NextFunction) => {
+  async validatePostGroup (req: Request, res: Response, next: NextFunction){
     const [user1, user2] = req.body as any;
     try {
       checkID(user1)
@@ -14,7 +14,7 @@ export const GroupValidations = {
     }
   },
 
-  validateGetChats: async (req: Request, res: Response, next: NextFunction) => {
+  async validateGetGroups (req: Request, res: Response, next: NextFunction){
     const { userID } = req.params as any;
     try {
       checkID(userID)
@@ -23,7 +23,6 @@ export const GroupValidations = {
       res.status(400).send("Invalid Request")
     }
   }
-
 
 
 }
