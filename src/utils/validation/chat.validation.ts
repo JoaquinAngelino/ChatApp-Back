@@ -1,30 +1,32 @@
 import { Request, Response, NextFunction } from "express";
 import { isObjectId } from "./modelValidation/isObjectId";
 import { isMessage } from "./modelValidation/isMessage";
+import { isChat } from "./modelValidation/isChat";
 
 
 export const ChatValidations = {
-  async validatePostChat(_req: Request, res: Response, next: NextFunction) {
-    // const [user1, user2] = req.body as any;
-    try {
-      next()
-    } catch (error) {
-      res.status(400).send("Invalid Request")
+
+  //    VALIDATE POST /CHAT
+  async validatePostChat(req: Request, res: Response, next: NextFunction) {
+
+    if (!isChat(req.body) || !isObjectId(req.params.userId)) {
+      return res.status(400).send('Bad Request')
     }
+    next()
   },
 
-  async validateGetChats(_req: Request, res: Response, next: NextFunction) {
-    // const { userID } = req.params as any;
-    try {
-      next()
-    } catch (error) {
-      res.status(400).send("Invalid Request")
+  //    VALIDATE GET /CHAT
+  async validateGetChats(req: Request, res: Response, next: NextFunction) {
+    if (!isObjectId(req.params.userId) || !isObjectId(req.params.chatId)) {
+      return res.status(400).send('Bad Request')
     }
+    next()
   },
 
+  //    VALIDATE POST /CHAT/MESSAGE
   async validatePostMessage(req: Request, res: Response, next: NextFunction) {
-    const { chatId } = req.params
-    if (!isMessage(req.body) || !isObjectId(chatId)) {
+
+    if (!isMessage(req.body) || !isObjectId(req.params.chatId)) {
       return res.status(400).send('Bad Request')
     }
     const { text, sender, time } = req.body
@@ -32,11 +34,14 @@ export const ChatValidations = {
     next()
   },
 
+  //    VALIDATE GET /CHAT/MESSAGE
   async validateDeleteMessage(_req: Request, _res: Response, next: NextFunction) {
     next()
   },
-  
-  async validateDeleteChat(_req: Request, _res: Response, _next: NextFunction){
+
+  //    VALIDATE GET /CHAT
+  async validateDeleteChat(_req: Request, _res: Response, _next: NextFunction) {
+
   }
 }
 

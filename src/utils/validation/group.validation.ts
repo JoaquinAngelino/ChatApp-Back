@@ -1,24 +1,35 @@
 import { Request, Response, NextFunction } from "express";
+import { isGroup } from "./modelValidation/isGroup";
+import { isObjectId } from "./modelValidation/isObjectId";
 
 
 export const GroupValidations = {
+
+  //    VALIDATE POST /GROUP
   async validatePostGroup(req: Request, res: Response, next: NextFunction) {
-    const { user1, user2 } = req.body as any;
-    try {
-      next()
-    } catch (error) {
-      res.status(400).send("Invalid Request")
+
+    if (!isGroup(req.body) || isObjectId(req.params.adminId)) {
+      return res.status(400).send('Bad Request')
     }
+    next()
   },
 
+  //    VALIDATE GET /GROUP
   async validateGetGroups(req: Request, res: Response, next: NextFunction) {
-    const { userID } = req.params as any;
-    try {
-      next()
-    } catch (error) {
-      res.status(400).send("Invalid Request")
-    }
-  }
 
+    if (!isObjectId(req.params.userId)) {
+      return res.status(400).send('Bad Request')
+    }
+    next()
+  },
+
+  //    VALIDATE DELETE /GROUP
+  async validateDeleteGroup(req: Request, res: Response, next: NextFunction) {
+
+    if (!isObjectId(req.params.groupId) || isObjectId(req.params.adminId)) {
+      return res.status(400).send('Bad Request')
+    }
+    next()
+  },
 
 }
