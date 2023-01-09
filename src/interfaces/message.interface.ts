@@ -4,5 +4,5 @@ export interface IMessage {
 	_id?: Types.ObjectId;
 	text: string;
 	sender: Types.ObjectId;
-	time: number;
+	time: Date;
 }

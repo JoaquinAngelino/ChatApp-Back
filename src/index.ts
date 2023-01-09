@@ -1,45 +1,27 @@
-import express from 'express'
-import http from 'http'
+// import http from 'http'
+// import { Server } from "socket.io";
 import mongoose from 'mongoose';
-import cors from 'cors'
-import rateLimit from 'express-rate-limit'
-import helmet from 'helmet';
-import chatRoutes from './routes/chat.route';
-import userRoutes from './routes/user.route';
-import groupRoutes from './routes/group.route';
-import { Server } from "socket.io";
-import { PORT, MONGO, proxyConfig} from './config';
+import { PORT, MONGO } from './config';
+import app from './app'
+import createIoConn from './io';
 
-const app = express()
+// const server = http.createServer(app)
 
-app.use(express.json())
-app.use(cors({
-  origin: '*'
-}));
-app.use(helmet())
-app.use(rateLimit({ windowMs: 5 * 60 * 1000, max: 20 }))
-app.use('/chat', chatRoutes)
-app.use('/user', userRoutes)
-app.use('group',groupRoutes)
-app.use('/', proxyConfig)
+// const io = new Server(server, {
+//   cors: {
+//     origin: "*",
+//     methods: ["GET", "POST", "PUT", "DELETE"]
+//   }
+// })
 
-const server = http.createServer(app)
+// io.on('connection', async (socket) => {
+//   console.log("Usuario " + socket.id + " se ha conectado");
+// })
 
-const io = new Server(server, {
-  cors: {
-    origin: "*",
-    methods: ["GET", "POST", "PUT", "DELETE"]
-  }
-}
-)
-io.on('connection', async (socket) => {
-  console.log("Usuario " + socket.id + " se ha conectado");
-})
-
+createIoConn(app)
 
 mongoose.connect(MONGO)
-  .then(() => console.log('mongoDB connected'))
+  .then(() => console.log('mongoDB OK'))
   .catch(err => console.log("DB ERROR", err))
-
 
 app.listen(PORT, () => { console.log(`Server running on port=${PORT}`) })

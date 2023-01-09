@@ -5,16 +5,19 @@ export const MessageSchema = new Schema<IMessage>(
   {
     text: {
       type: String,
-      required: true
+      required: true,
+      inmutable: true
     },
     sender: {
       type: SchemaTypes.ObjectId,
       ref: 'User',
-      required: true
+      required: true,
+      inmutable: true
     },
     time: {
-      type: Number,
-      required: true
+      type: Date,
+      default: Date.now,
+      inmutable: true
     },
   },
   { versionKey: false }

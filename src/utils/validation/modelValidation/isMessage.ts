@@ -1,5 +1,5 @@
 import { isValidObjectId } from 'mongoose';
-import { IMessage } from '../../interfaces/message.interface';
+import { IMessage } from '../../../interfaces/message.interface';
 
 export const isMessage = (object: unknown): object is IMessage => {
   if (object !== null && typeof object === 'object') {

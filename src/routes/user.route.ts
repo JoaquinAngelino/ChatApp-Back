@@ -6,7 +6,7 @@ const router: Router = Router()
 /*
     USER ROUTES
 */
-router.get('/user/:userID', UserValidations.validateGetUsers, UserController.getUser)
+router.get('/user/:userID', UserValidations.validateGetUser, UserController.getUser)
 
 router.post('/user', UserValidations.validatePostUser, UserController.postUser)
 

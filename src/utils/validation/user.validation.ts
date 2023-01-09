@@ -1,32 +1,28 @@
 import { Request, Response, NextFunction } from "express";
+import { isObjectId } from "./modelValidation/isObjectId";
+import { isUser } from "./modelValidation/isUser";
 
 export const UserValidations = {
-  validatePostUser: async (_req: Request, res: Response, next: NextFunction) => {
-    // const data = req.body as any;
-    try {
-
-      next()
-    } catch (error) {
-      res.status(400).send("Invalid Request")
+  validatePostUser: async (req: Request, res: Response, next: NextFunction) => {
+    if (!isUser(req.body)) {
+      return res.status(400).send('Bad Request')
     }
+    next()
   },
 
-  validateGetUsers: async (_req: Request, res: Response, next: NextFunction) => {
-    // const { userID } = req.params as any;
-    try {
-      next()
-    } catch (error) {
-      res.status(400).send("Invalid Request")
+  //    VALIDATE GET /USER
+  validateGetUser: async (req: Request, res: Response, next: NextFunction) => {
+    if (!isObjectId(req.params.chatId)) {
+      return res.status(400).send('Bad Request')
     }
+    next()
   },
-  
-  validateUserUpdate: async (_req: Request, res: Response, next: NextFunction) => {
-    // const { userID } = req.params as any;
-    // const data = req.body as any;
-    try {
-      next()
-    } catch (error) {
-      res.status(400).send("Invalid Request")
+
+  //    VALIDATE UPDATE /USER
+  validateUserUpdate: async (req: Request, res: Response, next: NextFunction) => {
+    if (!isUser(req.body) || !isObjectId(req.params.chatId)) {
+      return res.status(400).send('Bad Request')
     }
+    next()
   }
 }

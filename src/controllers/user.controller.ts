@@ -3,7 +3,8 @@ import { UserService } from "../services/user.service";
 
 export const UserController = {
 
-  /*    POST CHAT   */
+  //    POST USER
+  // creates a new user
   async postUser(req: Request, res: Response, next: NextFunction) {
     const chat = req.body
     try {
@@ -14,7 +15,8 @@ export const UserController = {
     }
   },
 
-  /*    GET CHAT   */
+  //    GET USER
+  // return a user info with all the groups/chats 
   async getUser(req: Request, res: Response, next: NextFunction) {
     const chatId = req.params.chatId as string;
     try {
@@ -25,6 +27,8 @@ export const UserController = {
     }
   },
   
+  //    UPDATE USER
+  // modifies an existing user
   async updateUser(req: Request, res: Response, next: NextFunction) {
     const chatId = req.params.chatId as string;
     try {
@@ -35,7 +39,8 @@ export const UserController = {
     }
   },
 
-  // /*    DELETE USER   */
+  //    DELETE USER   
+  // deletes a user    
   // async deleteChat(req: Request, res: Response, next: NextFunction) {
   //   const { chatId, userId } = req.query as { [key: string]: string}
 
