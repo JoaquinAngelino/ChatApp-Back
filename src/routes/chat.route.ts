@@ -13,10 +13,10 @@ router.get('/:userId', ChatValidations.validateGetChats, ChatController.getChat)
 router.post('/', ChatValidations.validatePostChat, ChatController.postChat)
 
 // POST /message/:chatId
-router.post('/message/:chatId', ChatValidations.validatePostMessage, ChatController.postChat)
+router.post('/message/:chatId', ChatValidations.validatePostMessage, ChatController.postMessage)
 
 // DELETE /message/:chatId
-router.post('/message/:chatId', ChatValidations.validateDeleteMessage, ChatController.postChat)
+router.delete('/message/:chatId', ChatValidations.validateDeleteMessage, ChatController.deleteMessage)
 
 // DELETE /:chatId
 router.delete('/:chatId', ChatValidations.validateDeleteChat, ChatController.deleteChat)

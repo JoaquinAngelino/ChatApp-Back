@@ -1,4 +1,6 @@
 import { IUser } from '../../../interfaces/user.interface';
+import { isChatArr } from './isChat';
+import { isObjectIdArr } from './isObjectId';
 
 export const isUser = (obj: unknown): obj is IUser => {
 
@@ -6,22 +8,26 @@ export const isUser = (obj: unknown): obj is IUser => {
   if (!('name' in obj) || !('email' in obj) || !('password' in obj)) { return false }
 
   if ('chats' in obj) {
-    if (!Array.isArray(obj['chats'])) { return false }
-    if (!obj['chats'].isObjectIdArr() && obj['chats'].isChatArr()) { return false }
+    if (!isObjectIdArr(obj['chats']) && isChatArr(obj['chats'])) { return false }
   }
   if ('contacts' in obj) {
-    if (!Array.isArray(obj['contacts'])) { return false }
-    if (!obj['contacts'].isObjectIdArr() && !obj['contacts'].isUserArr()) { return false }
+    if (!isObjectIdArr(obj['contacts']) && !isUserArr(obj['contacts'])) { return false }
   }
   if ('blocked' in obj) {
-    if (!Array.isArray(obj['blocked'])) { return false }
-    if (!obj['blocked'].isObjectIdArr() && !obj['blocked'].isUserArr()) { return false }
+    if (!isObjectIdArr(obj['blocked']) && !isUserArr(obj['blocked'])) { return false }
   }
   if ('groups' in obj) {
-    if (!Array.isArray(obj['groups'])) { return false }
-    if (!obj['groups'].isObjectIdArr() && !obj['groups'].isUserArr()) { return false }
+    if (!isObjectIdArr(obj['groups']) && !isUserArr(obj['groups'])) { return false }
   }
 
   const { name, email, password } = obj
   return typeof name == 'string' && typeof email == 'number' && typeof password == 'string'
+}
+
+export const isUserArr = (arr: unknown): arr is IUser[] => {
+  if (!Array.isArray(arr)) { return false }
+  for (let e of arr) {
+    if (!isUser(e)) { return false }
+  }
+  return true
 }

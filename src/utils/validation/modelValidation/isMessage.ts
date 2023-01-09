@@ -10,12 +10,11 @@ export const isMessage = (object: unknown): object is IMessage => {
   }
   return false
 }
-// export const isMessageArr = (arr: unknown): arr is IMessage[] => {
-//   if (arr !== null && Array.isArray(arr)) {
-//     for (let e of arr) {
-//       if (!isMessage(e)) { return false }
-//     }
-//     return true
-//   }
-//   return false
-// }
+
+export const isMessageArr = (arr: unknown): arr is IMessage[] => {
+  if (!Array.isArray(arr)) { return false }
+  for (let e of arr) {
+    if (!isMessage(e)) { return false }
+  }
+  return true
+}

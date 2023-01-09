@@ -1,5 +1,7 @@
 import { IGroup } from '../../../interfaces/group.interface';
-import { isObjectId } from './isObjectId';
+import { isMessageArr } from './isMessage';
+import { isObjectId, isObjectIdArr } from './isObjectId';
+import { isUserArr } from './isUser';
 
 export const isGroup = (obj: unknown): obj is IGroup => {
   if (obj !== null && typeof obj === 'object') {
@@ -9,17 +11,24 @@ export const isGroup = (obj: unknown): obj is IGroup => {
       if (!isObjectId(obj['admin'])) { return false }
 
       if ('members' in obj) {
-        if (!Array.isArray(obj['members'])) { return false }
-        if (!obj['members'].isObjectIdArr() && !obj['members'].isUserArr()) { return false }
+        if (!isObjectIdArr(obj['members']) && !isUserArr(obj['members'])) { return false }
         if (obj['members'].length !== 0 && obj['members'].length !== 2) { return false }
       }
 
       if ('messages' in obj) {
-        if (!Array.isArray(obj['messages'])) { return false }
-        if (!obj['messages'].isObjectIdArr() && !obj['messages'].isMessageArr) { return false }
+        if (!isObjectIdArr(obj['messages']) && !isMessageArr(obj['messages'])) { return false }
       }
       return true
     }
   }
   return false
+}
+
+
+export const isGroupArr = (arr: unknown): arr is IGroup[] => {
+  if (!Array.isArray(arr)) { return false }
+  for (let e of arr) {
+    if (!isGroup(e)) { return false }
+  }
+  return true
 }
