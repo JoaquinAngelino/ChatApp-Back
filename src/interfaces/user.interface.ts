@@ -7,5 +7,6 @@ export interface IUser {
   email: String
   chats: Types.ObjectId[];
   contacts: Types.ObjectId[];
+  blocked: Types.ObjectId[];
   groups: Types.ObjectId[];
 }

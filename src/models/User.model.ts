@@ -15,6 +15,10 @@ export const UserSchema = new Schema<IUser>(
       type: SchemaTypes.ObjectId,
       ref: 'Chat'
     }],
+    blocked: [{
+      type: SchemaTypes.ObjectId,
+      ref: 'User'
+    }],
     contacts: [{
       type: SchemaTypes.ObjectId,
       ref: 'User'

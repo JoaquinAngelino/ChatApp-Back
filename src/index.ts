@@ -1,13 +1,14 @@
 import express from 'express'
-import chatRoutes from './routes/chat.route';
-import userRoutes from './routes/user.route';
 import http from 'http'
 import mongoose from 'mongoose';
 import cors from 'cors'
 import rateLimit from 'express-rate-limit'
 import helmet from 'helmet';
+import chatRoutes from './routes/chat.route';
+import userRoutes from './routes/user.route';
+import groupRoutes from './routes/group.route';
 import { Server } from "socket.io";
-import { PORT, MONGO } from './config';
+import { PORT, MONGO, proxyConfig} from './config';
 
 const app = express()
 
@@ -19,8 +20,8 @@ app.use(helmet())
 app.use(rateLimit({ windowMs: 5 * 60 * 1000, max: 20 }))
 app.use('/chat', chatRoutes)
 app.use('/user', userRoutes)
-// app.use('/message',messageRoutes)
-// app.use('group',groupRoutes)
+app.use('group',groupRoutes)
+app.use('/', proxyConfig)
 
 const server = http.createServer(app)
 

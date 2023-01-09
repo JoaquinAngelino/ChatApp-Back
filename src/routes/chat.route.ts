@@ -4,12 +4,21 @@ import { ChatValidations } from "../utils/validation/chat.validation";
 
 const router: Router = Router()
 /*
-    CHAT ROUTES
+    CHAT ROUTES /chat/...
 */
-router.get('/:userID', ChatValidations.validateGetChats, ChatController.getChats)
+// GET /
+router.get('/:userId', ChatValidations.validateGetChats, ChatController.getChat)
 
+// POST /
 router.post('/', ChatValidations.validatePostChat, ChatController.postChat)
 
-router.delete('/:chatID', ChatValidations.validateDeleteChat, ChatController.deleteChat)
+// POST /message/:chatId
+router.post('/message/:chatId', ChatValidations.validatePostMessage, ChatController.postChat)
+
+// DELETE /message/:chatId
+router.post('/message/:chatId', ChatValidations.validateDeleteMessage, ChatController.postChat)
+
+// DELETE /:chatId
+router.delete('/:chatId', ChatValidations.validateDeleteChat, ChatController.deleteChat)
 
 export default router
