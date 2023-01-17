@@ -1,7 +1,7 @@
 import { Schema, model, SchemaTypes } from 'mongoose';
 import { IChat } from '../interfaces/chat.interface';
 
-export const ChatSchema = new Schema<IChat>(
+const ChatSchema = new Schema<IChat>(
   {
     members: [{
       type: SchemaTypes.ObjectId,

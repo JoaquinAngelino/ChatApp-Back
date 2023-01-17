@@ -1,19 +1,19 @@
 import { Router } from "express";
 import { ChatController } from "../controllers/chat.controller";
-import { ChatValidations } from "../utils/validation/chat.validation";
+import { ChatValidations } from "../dto-validation/chat.validation";
 
 const router: Router = Router()
 /*
     CHAT ROUTES /chat/...
 */
 // GET /
-router.get('/:userId', ChatValidations.validateGetChats, ChatController.getChat)
+// router.get('/:userId', ChatValidations.validateGetChats, ChatController.getChat)
 
 // POST /
 router.post('/', ChatValidations.validatePostChat, ChatController.postChat)
 
 // POST /message/:chatId
-router.post('/message/:chatId', ChatValidations.validatePostMessage, ChatController.postMessage)
+router.post('/message/:chatId', ChatValidations.validateAddMessage, ChatController.addMessage)
 
 // DELETE /message/:chatId
 router.delete('/message/:chatId', ChatValidations.validateDeleteMessage, ChatController.deleteMessage)

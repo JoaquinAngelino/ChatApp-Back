@@ -2,7 +2,7 @@
 import { Schema, model, SchemaTypes } from 'mongoose';
 import { IGroup } from '../interfaces/group.interface';
 
-export const GroupSchema = new Schema<IGroup>(
+const GroupSchema = new Schema<IGroup>(
   {
     name: {
       type: String,

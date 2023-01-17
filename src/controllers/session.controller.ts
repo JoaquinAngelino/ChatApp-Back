@@ -1,17 +1,17 @@
-import { NextFunction, Request, Response } from "express";
+import { Request, Response } from "express";
 
 
 export const SessionController = {
 
-  async login(req: Request, res: Response, next: NextFunction) {
+  async login(_req: Request, _res: Response) {
     
   },
 
-  async createAccount(req: Request, res: Response, next: NextFunction) {
+  async createAccount(_req: Request, _res: Response) {
 
   },
 
-  async logout(req: Request, res: Response, next: NextFunction) {
+  async logout(_req: Request, _res: Response) {
 
   },
 }

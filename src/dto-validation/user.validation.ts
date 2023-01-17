@@ -1,6 +1,6 @@
 import { Request, Response, NextFunction } from "express";
-import { isObjectId } from "./modelValidation/isObjectId";
-import { isUser } from "./modelValidation/isUser";
+import { isObjectId } from "../modelValidation/isObjectId";
+import { isUser } from "../modelValidation/isUser";
 
 export const UserValidations = {
 
@@ -11,7 +11,7 @@ export const UserValidations = {
     }
     next()
   },
-  
+
   //    VALIDATE GET /USER
   validateGetUser: async (req: Request, res: Response, next: NextFunction) => {
     if (!isObjectId(req.params.chatId)) {
@@ -22,7 +22,7 @@ export const UserValidations = {
 
   //    VALIDATE UPDATE /USER
   validateUserUpdate: async (req: Request, res: Response, next: NextFunction) => {
-    if (!isUser(req.body) || !isObjectId(req.params.chatId)) {
+    if (!isUser(req.body) || !isObjectId(req.params.userId)) {
       return res.status(400).send('Bad Request')
     }
     next()

@@ -1,6 +1,6 @@
 import { Request, Response, NextFunction } from "express";
 import jwt from 'jsonwebtoken'
-import { SECRET } from "../../config";
+import { SECRET } from "../config";
 
 export const TokenController = {
 
@@ -16,15 +16,11 @@ export const TokenController = {
     })
   },
 
-  generateToken(username: string, password: string): string {
-    return jwt.sign({ username, password }, SECRET)
+  generateToken(userId: string): string {
+    return jwt.sign({ userId }, SECRET)
   },
 
   async deleteToken() {
 
   },
-  
-  // refreshToken(): String {
-  //   return jwt.sign({ username, password }, SECRET)
-  // }
 }

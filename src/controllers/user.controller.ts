@@ -1,54 +1,54 @@
-import { Request, Response, NextFunction } from "express";
-import { UserService } from "../services/user.service";
+import { Request, Response } from "express";
+import { UserDAO } from "../dao/user.dao";
 
 export const UserController = {
 
   //    POST USER
   // creates a new user
-  async postUser(req: Request, res: Response, next: NextFunction) {
-    const chat = req.body
+  async postUser(req: Request, res: Response) {
+    const user = req.body
     try {
-      const created = await UserService.postChat(chat)
+      const created = await UserDAO.postUser(user)
       return res.status(200).json(created)
     } catch (error) {
-      next(error);
+      res.status(500).send({ message: (error as Error).message })
     }
   },
 
   //    GET USER
   // return a user info with all the groups/chats 
-  async getUser(req: Request, res: Response, next: NextFunction) {
-    const chatId = req.params.chatId as string;
+  async getUser(req: Request, res: Response) {
+    const userId = req.params.chatId as string;
     try {
-      const chat = await UserService.getChat(chatId);
+      const chat = await UserDAO.getUser(userId);
       return res.status(200).json(chat);
     } catch (error) {
-      next(error);
+      res.status(500).send({ message: (error as Error).message })
     }
   },
-  
+
   //    UPDATE USER
   // modifies an existing user
-  async updateUser(req: Request, res: Response, next: NextFunction) {
-    const chatId = req.params.chatId as string;
+  async updateUser(req: Request, res: Response) {
+    const user = req.body
     try {
-      const chat = await UserService.getChat(chatId);
+      const chat = await UserDAO.updateUser(user);
       return res.status(200).json(chat);
     } catch (error) {
-      next(error);
+      res.status(500).send({ message: (error as Error).message })
     }
   },
 
   //    DELETE USER   
   // deletes a user    
-  // async deleteChat(req: Request, res: Response, next: NextFunction) {
+  // async deleteChat(req: Request, res: Response) {
   //   const { chatId, userId } = req.query as { [key: string]: string}
 
   //   try {
-  //     const deleted = await UserService.deleteChat(chatId, userId)
+  //     const deleted = await UserDAO.deleteChat(chatId, userId)
   //     return res.status(200).json(deleted)
   //   } catch (error) {
-  //     next(error)
+  //     res.status(500).send({ message: (error as Error).message })
   //   }
   // }
 }

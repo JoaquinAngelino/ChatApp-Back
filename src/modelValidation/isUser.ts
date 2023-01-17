@@ -1,4 +1,4 @@
-import { IUser } from '../../../interfaces/user.interface';
+import { IUser } from '../interfaces/user.interface';
 import { isChatArr } from './isChat';
 import { isObjectIdArr } from './isObjectId';
 

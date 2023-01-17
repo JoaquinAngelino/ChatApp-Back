@@ -1,4 +1,4 @@
-import { IChat } from '../../../interfaces/chat.interface';
+import { IChat } from '../interfaces/chat.interface';
 import { isMessageArr } from './isMessage';
 import { isObjectIdArr } from './isObjectId';
 import { isUserArr } from './isUser';

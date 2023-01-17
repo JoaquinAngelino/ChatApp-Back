@@ -1,4 +1,4 @@
-import { IGroup } from '../../../interfaces/group.interface';
+import { IGroup } from '../interfaces/group.interface';
 import { isMessageArr } from './isMessage';
 import { isObjectId, isObjectIdArr } from './isObjectId';
 import { isUserArr } from './isUser';

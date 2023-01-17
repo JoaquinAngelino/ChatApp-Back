@@ -1,4 +1,4 @@
-import { IMessage } from '../../../interfaces/message.interface';
+import { IMessage } from '../interfaces/message.interface';
 import { isObjectId } from './isObjectId';
 
 export const isMessage = (object: unknown): object is IMessage => {
