@@ -1,6 +1,6 @@
 import { Router } from "express";
 import { ChatController } from "../controllers/chat.controller";
-import { ChatValidations } from "../dto-validation/chat.validation";
+import { ChatValidations } from "../DTO/validation/chat.validate";
 
 const router: Router = Router()
 /*
@@ -19,6 +19,6 @@ router.post('/message/:chatId', ChatValidations.validateAddMessage, ChatControll
 router.delete('/message/:chatId', ChatValidations.validateDeleteMessage, ChatController.deleteMessage)
 
 // DELETE /:chatId
-router.delete('/:chatId', ChatValidations.validateDeleteChat, ChatController.deleteChat)
+// router.delete('/:chatId', ChatValidations.validateDeleteChat, ChatController.deleteChat)
 
 export default router

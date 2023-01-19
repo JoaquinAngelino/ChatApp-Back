@@ -1,5 +1,5 @@
 import { Request, Response } from "express";
-import { ChatDAO } from "../dao/chat.dao";
+import { ChatDAO } from "../DAO/chat.dao";
 
 export const ChatController = {
 

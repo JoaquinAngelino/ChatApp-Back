@@ -1,7 +1,7 @@
 import { Request, Response, NextFunction } from "express";
-import { isObjectId } from "../modelValidation/isObjectId";
-import { isMessage } from "../modelValidation/isMessage";
-import { isChat } from "../modelValidation/isChat";
+import { isObjectId } from "../../modelValidation/isObjectId";
+import { isMessage } from "../../modelValidation/isMessage";
+import { isChat } from "../../modelValidation/isChat";
 
 
 export const ChatValidations = {

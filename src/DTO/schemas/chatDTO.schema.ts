@@ -1,5 +1,5 @@
 
-export const chat_DTO_Schema = {
+export const Chat_DTO_Schema = {
   type: 'object',
   properties: {
     name: { type: 'string' },

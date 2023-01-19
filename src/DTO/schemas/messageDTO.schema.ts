@@ -1,5 +1,5 @@
 
-export const message_DTO_Schema = {
+export const Message_DTO_Schema = {
   type: 'object',
   properties: {
     sender: { type: 'string' },

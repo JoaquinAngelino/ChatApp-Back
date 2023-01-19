@@ -1,5 +1,5 @@
 import { Request, Response } from "express";
-import { UserDAO } from "../dao/user.dao";
+import { UserDAO } from "../DAO/user.dao";
 
 export const UserController = {
 

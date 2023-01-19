@@ -1,7 +1,7 @@
 import { Request, Response, NextFunction } from "express";
-import { isGroup } from "../modelValidation/isGroup";
-import { isMessage } from "../modelValidation/isMessage";
-import { isObjectId } from "../modelValidation/isObjectId";
+import { isGroup } from "../../modelValidation/isGroup";
+import { isMessage } from "../../modelValidation/isMessage";
+import { isObjectId } from "../../modelValidation/isObjectId";
 
 
 export const GroupValidations = {

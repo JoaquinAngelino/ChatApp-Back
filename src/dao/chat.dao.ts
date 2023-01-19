@@ -32,9 +32,9 @@ export const ChatDAO = {
     await finded.save()
   },
 
-  /**
-   * ? como eliminar el chat de un solo usuario, no ambos
-   */
+
+  //  ! NO UTILIZAR 
+  //  ? eliminar el chat de un solo usuario, no ambos / Definir funcionamiento
   async deleteChat(chatId: string, userId: string): Promise<IChat> {
 
     const user = await UserModel.findById(userId)

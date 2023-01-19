@@ -21,7 +21,7 @@ export const isUser = (obj: unknown): obj is IUser => {
   }
 
   const { name, email, password } = obj
-  return typeof name == 'string' && typeof email == 'number' && typeof password == 'string'
+  return typeof name == 'string' && typeof email == 'string' && typeof password == 'string'
 }
 
 export const isUserArr = (arr: unknown): arr is IUser[] => {

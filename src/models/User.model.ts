@@ -7,14 +7,15 @@ const UserSchema = new Schema<IUser>(
       type: String,
       required: true,
     },
-    email: [{
+    email: {
       type: String,
+      unique: true,
       required: true,
-    }],
-    password: [{
+    },
+    password: {
       type: String,
       required: true
-    }],
+    },
     chats: [{
       type: SchemaTypes.ObjectId,
       ref: 'Chat',
@@ -22,15 +23,18 @@ const UserSchema = new Schema<IUser>(
     }],
     blocked: [{
       type: SchemaTypes.ObjectId,
-      ref: 'User'
+      ref: 'User',
+      default: []
     }],
     contacts: [{
       type: SchemaTypes.ObjectId,
-      ref: 'User'
+      ref: 'User',
+      default: []
     }],
     groups: [{
       type: SchemaTypes.ObjectId,
-      ref: 'Group'
+      ref: 'Group',
+      default: []
     }]
   },
   { versionKey: false }

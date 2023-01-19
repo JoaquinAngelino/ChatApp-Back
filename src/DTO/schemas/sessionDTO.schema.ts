@@ -1,5 +1,5 @@
 
-export const user_DTO_Schema = {
+export const Session_DTO_Schema = {
   type: 'object',
   properties: {
     name: { type: 'string' },
@@ -9,3 +9,4 @@ export const user_DTO_Schema = {
   required: ['name', 'email', 'password'],
   additionalProperties: false
 }
+

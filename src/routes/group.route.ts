@@ -1,6 +1,6 @@
 import { Router } from "express";
 import { GroupController } from "../controllers/group.controller";
-import { GroupValidations } from "../dto-validation/group.validation";
+import { GroupValidations } from "../DTO/validation/group.validate";
 
 
 const router: Router = Router()

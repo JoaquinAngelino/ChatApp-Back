@@ -1,5 +1,5 @@
 import { Request, Response } from "express";
-import { GroupDAO } from "../dao/group.dao";
+import { GroupDAO } from "../DAO/group.dao";
 
 export const GroupController = {
 
