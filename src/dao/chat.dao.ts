@@ -1,8 +1,9 @@
 import { IChat } from "../interfaces/chat.interface"
-import { IMessage } from "../interfaces/message.interface"
+import { IMessage, PaginatedIMessages } from "../interfaces/message.interface"
 import { ChatModel } from "../models/Chat.model"
 import { MessageModel } from "../models/Message.model"
 import { UserModel } from "../models/User.model"
+import { isChat } from "../modelValidation/isChat"
 
 
 export const ChatDAO = {
@@ -32,6 +33,29 @@ export const ChatDAO = {
     await finded.save()
   },
 
+  async getMessage(chatId: string, offset: number = 0): Promise<PaginatedIMessages> {
+
+    const chat = await ChatModel
+      .findById(chatId)
+      .populate({
+        path: 'messages',
+        options: {
+          offset: offset,
+          limit: 10
+        }
+      })
+
+    if (!chat || !isChat(chat)) { throw new Error('No se encontró el usuario/chat') }
+
+    const result = {
+      messages: chat.messages,
+      page: offset
+    }
+
+    return result as PaginatedIMessages
+  },
+
+
 
   //  ! NO UTILIZAR 
   //  ? eliminar el chat de un solo usuario, no ambos / Definir funcionamiento
@@ -47,3 +71,5 @@ export const ChatDAO = {
     return {} as IChat
   }
 }
+
+

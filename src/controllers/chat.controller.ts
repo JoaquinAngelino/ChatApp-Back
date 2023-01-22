@@ -16,26 +16,19 @@ export const ChatController = {
     }
   },
 
-  //    GET CHAT
-  // returns a specific chat with it's messages
-  // async getChat(req: Request, res: Response) {
-  //   const chatId = req.params.chatId as string;
-  //   try {
-  //     const chat = await ChatDAO.getChat(chatId);
-  //     return res.status(200).json(chat);
-  //   } catch (error) {
-  //     res.status(500).send({ message: 'Server side Error' })
-  //   }
-  // },
-
   //   * GET MESSAGES
-  // ? returns 15 messages from a chat (will need the offset)
-  async getMessages(_req: Request, res: Response) {
-    // MessageDAO.getMessage()
-    res.send('getMessages200')
+  // ? returns 10 messages from a chat (will need the offset)
+  async getMessages(req: Request, res: Response) {
+    const { userId, chatId, offset } = req.body
+    try {
+      const messages = ChatDAO.getMessage(userId, chatId, offset)
+      return res.status(200).send(messages)
+    } catch (error) {
+      res.status(500).send({ message: (error as Error).message })
+    }
   },
 
-  //    POST MESSAGE
+  //  *  ADD MESSAGE
   // appends a new message to a specific chat
   async addMessage(req: Request, res: Response) {
     const chatId = req.params.chatId
@@ -49,7 +42,7 @@ export const ChatController = {
     }
   },
 
-  //    DELETE MESSAGE
+  //  *  DELETE MESSAGE
   // deletes a specific message from a chat
   async deleteMessage() {
 

@@ -1,5 +1,5 @@
 
-export const Session_DTO_Schema = {
+export const Session_Schema = {
   type: 'object',
   properties: {
     name: { type: 'string' },

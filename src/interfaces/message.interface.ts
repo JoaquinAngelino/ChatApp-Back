@@ -6,3 +6,8 @@ export interface IMessage {
 	sender: Types.ObjectId
 	time: Date
 }
+
+export interface PaginatedIMessages {
+	messages: Array<IMessage>
+	page: number
+}
