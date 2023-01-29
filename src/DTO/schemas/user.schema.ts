@@ -10,6 +10,6 @@ export const User_Schemas = {
     required: ['name', 'email', 'password'],
     additionalProperties: false
   }
-  
+
 }
 

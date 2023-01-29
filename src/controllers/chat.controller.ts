@@ -19,9 +19,9 @@ export const ChatController = {
   //   * GET MESSAGES
   // ? returns 10 messages from a chat (will need the offset)
   async getMessages(req: Request, res: Response) {
-    const { userId, chatId, offset } = req.body
+    const { chatId, offset } = req.body
     try {
-      const messages = ChatDAO.getMessage(userId, chatId, offset)
+      const messages = ChatDAO.getMessage(chatId, offset)
       return res.status(200).send(messages)
     } catch (error) {
       res.status(500).send({ message: (error as Error).message })
