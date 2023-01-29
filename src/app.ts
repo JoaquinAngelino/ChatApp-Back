@@ -5,6 +5,7 @@ import helmet from 'helmet';
 import chatRoutes from './routes/chat.route';
 import userRoutes from './routes/user.route';
 import groupRoutes from './routes/group.route';
+import sessionRoutes from './routes/session.route';
 // import { proxyConfig } from './config';
 import morgan from 'morgan'
 
@@ -21,6 +22,7 @@ app.use(rateLimit({ windowMs: 5 * 60 * 1000, max: 20 }))
 app.use('/chat', chatRoutes)
 app.use('/user', userRoutes)
 app.use('/group', groupRoutes)
+app.use('/session', sessionRoutes)
 
 app.use((error: Error, _req: Request, res: Response, _next: NextFunction) => {
   console.log(error);

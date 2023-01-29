@@ -2,22 +2,22 @@ import { Request, Response, NextFunction } from "express";
 import jwt from 'jsonwebtoken'
 import { SECRET } from "../config";
 
-export const TokenController = {
+export const TokenHandler = {
 
-  authenticateToken(req: Request, res: Response, next: NextFunction) {
+  authenticateToken(req: Request, _res: Response, next: NextFunction) {
     const authHeader = req.headers['authorization']
     const token = authHeader?.split(' ')[1] || undefined
 
-    if (!token) { return res.send(401) }
+    if (!token) { throw new Error('No authenticated') }
 
     jwt.verify(token, SECRET, (err, _user) => {
-      if (err) { return res.sendStatus(403) }
+      if (err) { throw new Error('No valid token') }
       next()
     })
   },
 
-  generateToken(userId: string): string {
-    return jwt.sign({ userId }, SECRET)
+  generateToken(obj: object): string {
+    return jwt.sign(obj, SECRET)
   },
 
   async deleteToken() {

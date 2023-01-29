@@ -1,18 +1,18 @@
 import { IUser } from "../interfaces/user.interface"
 import { UserModel } from "../models/User.model"
-import bcrypt from 'bcrypt'
-import CryptoJS from 'crypto-js'
+import { hashHandler } from "../utils/hashHandler"
+
 
 export const UserDAO = {
 
   async postUser(user: IUser): Promise<IUser> {
     const { password, name, email } = user
 
-    const hashedEmail = CryptoJS.SHA256(email).toString();
+    const hashedEmail = hashHandler.hashEmail(email)
     const emailTaken = await UserModel.findOne({ email: hashedEmail })
     if (emailTaken) { throw new Error('Mail en uso') }
 
-    const hashedPassword = await bcrypt.hash(password, 8)
+    const hashedPassword = await hashHandler.hashPassword(password)
     const created = await UserModel.create({ name, email: hashedEmail, password: hashedPassword })
 
     return created as IUser
@@ -23,9 +23,15 @@ export const UserDAO = {
     return user as IUser
   },
 
-  async getUser(userId: string): Promise<IUser> {
-    const finded = await UserModel.findById(userId).populate('chats')
+  async getUser(email: string, password: string): Promise<IUser> {
+    const hashedEmail = hashHandler.hashEmail(email)
+    const finded = await UserModel.findOne({ email: hashedEmail })
     if (!finded) { throw new Error('Usuario no encontrado en DB') }
+
+    const correct = await hashHandler.comparePassword(password, finded.password)
+    if (!correct) { throw new Error('Contraseña incorrecta') }
+
+    console.log(finded);
 
     return finded as IUser
   }

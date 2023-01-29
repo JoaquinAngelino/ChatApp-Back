@@ -3,25 +3,13 @@ import { UserDAO } from "../DAO/user.dao";
 
 export const UserController = {
 
-  //    POST USER
-  // creates a new user
-  async postUser(req: Request, res: Response) {
-    const user = req.body
-    try {
-      const created = await UserDAO.postUser(user)
-      return res.status(200).json(created)
-    } catch (error) {
-      res.status(500).send({ message: (error as Error).message })
-    }
-  },
-
   //    GET USER
   // return a user info with all the groups/chats 
   async getUser(req: Request, res: Response) {
-    const userId = req.params.chatId as string;
+    const { email, password } = req.body
     try {
-      const chat = await UserDAO.getUser(userId);
-      return res.status(200).json(chat);
+      const user = await UserDAO.getUser(email, password);
+      return res.status(200).json(user);
     } catch (error) {
       res.status(500).send({ message: (error as Error).message })
     }
