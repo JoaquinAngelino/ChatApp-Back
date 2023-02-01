@@ -18,16 +18,6 @@ export const SessionController = {
     }
   },
 
-  async register(req: Request, res: Response) {
-    const user = req.body
-    try {
-      const created = await UserDAO.postUser(user)
-      return res.status(200).json(created)
-    } catch (error) {
-      res.status(500).send({ message: (error as Error).message })
-    }
-  },
-
   async logout(_req: Request, _res: Response) {
 
   },

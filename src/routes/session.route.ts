@@ -6,9 +6,7 @@ const router: Router = Router()
 /*
     LOGIN ROUTES
 */
-// router.get('/logout', SessionValidations.logout, SessionController.logout)
-
-router.post('/register', SessionController.register)
+router.get('/logout', SessionController.logout)
 
 router.post('/login', SessionController.login)
 

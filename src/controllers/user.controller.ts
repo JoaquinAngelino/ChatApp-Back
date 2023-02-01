@@ -3,7 +3,18 @@ import { UserDAO } from "../DAO/user.dao";
 
 export const UserController = {
 
-  //    GET USER
+  //  *  POST USER
+  // creates a new user 
+  async postUser(req: Request, res: Response) {
+    const user = req.body
+    try {
+      const created = await UserDAO.postUser(user)
+      return res.status(200).json(created)
+    } catch (error) {
+      res.status(500).send({ message: (error as Error).message })
+    }
+  },
+  //  *  GET USER
   // return a user info with all the groups/chats 
   async getUser(req: Request, res: Response) {
     const { email, password } = req.body
@@ -15,7 +26,7 @@ export const UserController = {
     }
   },
 
-  //    UPDATE USER
+  //  *  UPDATE USER
   // modifies an existing user
   async updateUser(req: Request, res: Response) {
     const user = req.body
@@ -27,7 +38,7 @@ export const UserController = {
     }
   },
 
-  //    DELETE USER   
+  //  *   DELETE USER   
   // deletes a user    
   // async deleteChat(req: Request, res: Response) {
   //   const { chatId, userId } = req.query as { [key: string]: string}
