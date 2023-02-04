@@ -1,12 +1,11 @@
 
-export const Session_Schema = {
+export const SessionSchema = {
   type: 'object',
   properties: {
     name: { type: 'string' },
     email: { type: 'string', format: 'email' },
-    password: { type: 'string' },
+    password: { type: 'string' }
   },
   required: ['name', 'email', 'password'],
   additionalProperties: false
 }
-

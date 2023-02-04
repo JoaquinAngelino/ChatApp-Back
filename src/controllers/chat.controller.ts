@@ -1,11 +1,11 @@
-import { Request, Response } from "express";
-import { ChatDAO } from "../DAO/chat.dao";
+import { type Request, type Response } from 'express'
+import { ChatDAO } from '../DAO/chat.dao'
 
 export const ChatController = {
 
   // *   POST CHAT
   // creates a new chat
-  async postChat(req: Request, res: Response) {
+  async postChat (req: Request, res: Response) {
     const chat = req.body
     const userId = req.params.userId
     try {
@@ -18,7 +18,7 @@ export const ChatController = {
 
   //   * GET MESSAGES
   // ? returns 10 messages from a chat (will need the offset)
-  async getMessages(req: Request, res: Response) {
+  async getMessages (req: Request, res: Response) {
     const { chatId, offset } = req.body
     try {
       const messages = ChatDAO.getMessage(chatId, offset)
@@ -30,13 +30,12 @@ export const ChatController = {
 
   //  *  ADD MESSAGE
   // appends a new message to a specific chat
-  async addMessage(req: Request, res: Response) {
+  async addMessage (req: Request, res: Response) {
     const chatId = req.params.chatId
     const message = req.body
     try {
       await ChatDAO.addMessage(chatId, message)
       res.status(200).send({ message: 'message added' })
-
     } catch (error) {
       res.status(500).send({ message: (error as Error).message })
     }
@@ -44,7 +43,7 @@ export const ChatController = {
 
   //  *  DELETE MESSAGE
   // deletes a specific message from a chat
-  async deleteMessage() {
+  async deleteMessage () {
 
-  },
+  }
 }

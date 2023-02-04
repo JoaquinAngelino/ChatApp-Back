@@ -1,11 +1,11 @@
 
-export const Group_Schema = {
+export const GroupSchema = {
   group: {
     type: 'object',
     properties: {
       name: { type: 'string' },
       admin: { type: 'string', format: 'ObjectId' },
-      description: { type: 'string' },
+      description: { type: 'string' }
     },
     required: ['name', 'admin', 'description'],
     additionalProperties: false

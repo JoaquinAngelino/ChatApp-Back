@@ -1,5 +1,5 @@
 
-export const Chat_Schemas = {
+export const ChatSchemas = {
 
   chat: {
     type: 'object',

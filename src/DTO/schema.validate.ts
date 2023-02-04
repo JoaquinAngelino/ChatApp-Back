@@ -1,8 +1,8 @@
 import Ajv from 'ajv'
 import addFormats from 'ajv-formats'
 import { isObjectId } from '../modelValidation/isObjectId'
-import { Chat_Schemas } from './schemas/chat.schema'
-import { User_Schemas } from './schemas/user.schema'
+import { ChatSchemas } from './schemas/chat.schema'
+import { UserSchemas } from './schemas/user.schema'
 const ajv = new Ajv()
 addFormats(ajv)
 
@@ -16,8 +16,8 @@ ajv.addFormat('ObjectId', {
   validate: (prop: string) => isObjectId(prop)
 })
 
-export const validateUserSchema = ajv.compile(User_Schemas.user)
-export const validatePostChatSchema = ajv.compile(Chat_Schemas.chat)
-export const validateChatGetMessagesSchema = ajv.compile(Chat_Schemas.getMessages)
-// export const validate_Group = ajv.compile(Group_Schema)
-// export const validate_Session = ajv.compile(Session_Schema)
+export const ajvUser = ajv.compile(UserSchemas.user)
+export const ajvChat = ajv.compile(ChatSchemas.chat)
+export const ajvChatGetMessages = ajv.compile(ChatSchemas.getMessages)
+// export const ajvGroup = ajv.compile(GroupSchema)
+// export const ajvSession = ajv.compile(SessionSchema)

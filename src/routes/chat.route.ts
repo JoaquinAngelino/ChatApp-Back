@@ -1,4 +1,4 @@
-import { Router } from 'express'
+import { type RequestHandler, Router } from 'express'
 import { ChatController } from '../controllers/chat.controller'
 import { ChatValidations } from '../DTO/validation/chat.validate'
 
@@ -10,7 +10,7 @@ const router: Router = Router()
 // router.get('/:userId', ChatValidations.validateGetChats, ChatController.getChat)
 
 // POST /
-router.post('/', ChatValidations.validatePostChat, ChatController.postChat)
+router.post('/', (ChatValidations.validatePostChat) as RequestHandler, ChatController.postChat)
 
 // POST /message/:chatId
 router.post('/message/:chatId', ChatValidations.validateAddMessage, ChatController.addMessage)
