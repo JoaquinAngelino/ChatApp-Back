@@ -1,5 +1,5 @@
-import { Schema, model, SchemaTypes } from 'mongoose';
-import { IMessage } from '../interfaces/message.interface';
+import { Schema, model, SchemaTypes } from 'mongoose'
+import { type IMessage } from '../interfaces/message.interface'
 
 const MessageSchema = new Schema<IMessage>(
   {
@@ -18,9 +18,9 @@ const MessageSchema = new Schema<IMessage>(
       type: Date,
       default: Date.now,
       inmutable: true
-    },
+    }
   },
   { versionKey: false }
-);
+)
 
-export const MessageModel = model<IMessage>('Message', MessageSchema);
+export const MessageModel = model<IMessage>('Message', MessageSchema)

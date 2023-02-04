@@ -1,16 +1,16 @@
-import { Schema, model, SchemaTypes } from 'mongoose';
-import { IUser } from '../interfaces/user.interface';
+import { Schema, model, SchemaTypes } from 'mongoose'
+import { type IUser } from '../interfaces/user.interface'
 
 const UserSchema = new Schema<IUser>(
   {
     name: {
       type: String,
-      required: true,
+      required: true
     },
     email: {
       type: String,
       unique: true,
-      required: true,
+      required: true
     },
     password: {
       type: String,
@@ -38,6 +38,6 @@ const UserSchema = new Schema<IUser>(
     }]
   },
   { versionKey: false }
-);
+)
 
-export const UserModel = model<IUser>('User', UserSchema);
+export const UserModel = model<IUser>('User', UserSchema)

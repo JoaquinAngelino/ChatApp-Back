@@ -6,7 +6,7 @@ export const Chat_Schemas = {
     properties: {
       name: { type: 'string' },
       email: { type: 'string', format: 'email' },
-      password: { type: 'string' },
+      password: { type: 'string' }
     },
     required: ['name', 'email', 'password'],
     additionalProperties: false

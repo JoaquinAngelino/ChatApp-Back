@@ -1,13 +1,11 @@
-import { Router } from "express";
-import { GroupController } from "../controllers/group.controller";
-import { GroupValidations } from "../DTO/validation/group.validate";
-
+import { Router } from 'express'
+import { GroupController } from '../controllers/group.controller'
+import { GroupValidations } from '../DTO/validation/group.validate'
 
 const router: Router = Router()
 /*
     Group ROUTES
 */
-
 
 router.post('/', GroupValidations.validatePostGroup, GroupController.postGroup)
 

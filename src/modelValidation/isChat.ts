@@ -1,16 +1,16 @@
-import { IChat } from '../interfaces/chat.interface';
-import { isMessageArr } from './isMessage';
-import { isObjectIdArr } from './isObjectId';
-import { isUserArr } from './isUser';
+import { type IChat } from '../interfaces/chat.interface'
+import { isMessageArr } from './isMessage'
+import { isObjectIdArr } from './isObjectId'
+import { isUserArr } from './isUser'
 
 export const isChat = (obj: unknown): obj is IChat => {
   if (obj !== null && typeof obj === 'object') {
     if ('members' in obj) {
-      if (!isObjectIdArr(obj['members']) && !isUserArr(obj['members'])) { return false }
-      if (![0, 2].includes(obj['members'].length)) { return false }
+      if (!isObjectIdArr(obj.members) && !isUserArr(obj.members)) { return false }
+      if (![0, 2].includes(obj.members.length)) { return false }
     }
     if ('messages' in obj) {
-      if (!isObjectIdArr(obj['messages']) && !isMessageArr(obj['messages'])) { return false }
+      if (!isObjectIdArr(obj.messages) && !isMessageArr(obj.messages)) { return false }
     }
     return true
   }
@@ -19,15 +19,8 @@ export const isChat = (obj: unknown): obj is IChat => {
 
 export const isChatArr = (arr: unknown): arr is IChat[] => {
   if (!Array.isArray(arr)) { return false }
-  for (let e of arr) {
+  for (const e of arr) {
     if (!isChat(e)) { return false }
   }
   return true
 }
-
-
-
-
-
-
-

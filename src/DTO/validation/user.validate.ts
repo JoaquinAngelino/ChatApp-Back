@@ -1,14 +1,13 @@
-import { Request, Response, NextFunction } from "express";
-import { isObjectId } from "../../modelValidation/isObjectId";
-import { isUser } from "../../modelValidation/isUser";
-import { validate_User } from "../schema.validate";
+import { type Request, type Response, type NextFunction } from 'express'
+import { isObjectId } from '../../modelValidation/isObjectId'
+import { isUser } from '../../modelValidation/isUser'
+import { validateUserSchema } from '../schema.validate'
 
 export const UserValidations = {
 
   //    VALIDATE POST /USER
   validatePostUser: async (req: Request, res: Response, next: NextFunction) => {
-
-    if (!validate_User(req.body)) {
+    if (!validateUserSchema(req.body)) {
       return res.status(400).send('Bad Request')
     }
     next()

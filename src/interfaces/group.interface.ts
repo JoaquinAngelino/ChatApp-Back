@@ -1,6 +1,6 @@
-import { Types } from 'mongoose';
-import { IMessage } from './message.interface';
-import { IUser } from './user.interface';
+import { type Types } from 'mongoose'
+import { type IMessage } from './message.interface'
+import { type IUser } from './user.interface'
 
 export interface IGroup {
   _id?: Types.ObjectId

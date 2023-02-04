@@ -1,5 +1,5 @@
-import { IMessage } from '../interfaces/message.interface';
-import { isObjectId } from './isObjectId';
+import { type IMessage } from '../interfaces/message.interface'
+import { isObjectId } from './isObjectId'
 
 export const isMessage = (object: unknown): object is IMessage => {
   if (object !== null && typeof object === 'object') {
@@ -13,7 +13,7 @@ export const isMessage = (object: unknown): object is IMessage => {
 
 export const isMessageArr = (arr: unknown): arr is IMessage[] => {
   if (!Array.isArray(arr)) { return false }
-  for (let e of arr) {
+  for (const e of arr) {
     if (!isMessage(e)) { return false }
   }
   return true

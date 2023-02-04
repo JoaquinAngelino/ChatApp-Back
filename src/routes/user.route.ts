@@ -1,6 +1,6 @@
-import { Router } from "express";
-import { UserController } from "../controllers/user.controller";
-import { UserValidations } from "../DTO/validation/user.validate";
+import { Router } from 'express'
+import { UserController } from '../controllers/user.controller'
+import { UserValidations } from '../DTO/validation/user.validate'
 
 const router: Router = Router()
 /*

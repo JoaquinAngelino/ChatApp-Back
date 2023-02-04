@@ -1,5 +1,5 @@
-import { Schema, model, SchemaTypes } from 'mongoose';
-import { IChat } from '../interfaces/chat.interface';
+import { Schema, model, SchemaTypes } from 'mongoose'
+import { type IChat } from '../interfaces/chat.interface'
 
 const ChatSchema = new Schema<IChat>(
   {
@@ -13,6 +13,6 @@ const ChatSchema = new Schema<IChat>(
     }]
   },
   { versionKey: false }
-);
+)
 
-export const ChatModel = model<IChat>('Chat', ChatSchema);
+export const ChatModel = model<IChat>('Chat', ChatSchema)

@@ -1,6 +1,6 @@
-import { Router } from "express";
-import { ChatController } from "../controllers/chat.controller";
-import { ChatValidations } from "../DTO/validation/chat.validate";
+import { Router } from 'express'
+import { ChatController } from '../controllers/chat.controller'
+import { ChatValidations } from '../DTO/validation/chat.validate'
 
 const router: Router = Router()
 /*

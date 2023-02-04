@@ -1,14 +1,12 @@
-import { Request, Response, NextFunction } from "express";
-import { isObjectId } from "../../modelValidation/isObjectId";
-import { isMessage } from "../../modelValidation/isMessage";
-import { isChat } from "../../modelValidation/isChat";
-
+import { type Request, type Response, type NextFunction } from 'express'
+import { isObjectId } from '../../modelValidation/isObjectId'
+import { isMessage } from '../../modelValidation/isMessage'
+import { isChat } from '../../modelValidation/isChat'
 
 export const ChatValidations = {
 
   //    VALIDATE POST /CHAT
-  async validatePostChat(req: Request, res: Response, next: NextFunction) {
-
+  async validatePostChat (req: Request, res: Response, next: NextFunction) {
     if (!isChat(req.body) || !isObjectId(req.params.userId)) {
       return res.status(400).send('Bad Request')
     }
@@ -16,7 +14,7 @@ export const ChatValidations = {
   },
 
   //    VALIDATE GET /CHAT
-  async validateGetChats(req: Request, res: Response, next: NextFunction) {
+  async validateGetChats (req: Request, res: Response, next: NextFunction) {
     if (!isObjectId(req.params.userId) || !isObjectId(req.params.chatId)) {
       return res.status(400).send('Bad Request')
     }
@@ -24,8 +22,7 @@ export const ChatValidations = {
   },
 
   //    VALIDATE POST /CHAT/MESSAGE
-  async validateAddMessage(req: Request, res: Response, next: NextFunction) {
-
+  async validateAddMessage (req: Request, res: Response, next: NextFunction) {
     if (!isMessage(req.body) || !isObjectId(req.params.chatId)) {
       return res.status(400).send('Bad Request')
     }
@@ -35,13 +32,12 @@ export const ChatValidations = {
   },
 
   //    VALIDATE GET /CHAT/MESSAGE
-  async validateDeleteMessage(_req: Request, _res: Response, next: NextFunction) {
+  async validateDeleteMessage (_req: Request, _res: Response, next: NextFunction) {
     next()
   },
 
   //    VALIDATE GET /CHAT
-  async validateDeleteChat(_req: Request, _res: Response, _next: NextFunction) {
+  async validateDeleteChat (_req: Request, _res: Response, _next: NextFunction) {
 
   }
 }
-

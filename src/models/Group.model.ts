@@ -1,6 +1,6 @@
 
-import { Schema, model, SchemaTypes } from 'mongoose';
-import { IGroup } from '../interfaces/group.interface';
+import { Schema, model, SchemaTypes } from 'mongoose'
+import { type IGroup } from '../interfaces/group.interface'
 
 const GroupSchema = new Schema<IGroup>(
   {
@@ -10,7 +10,7 @@ const GroupSchema = new Schema<IGroup>(
     },
     description: {
       type: String,
-      default: "",
+      default: '',
       maxLength: 100
     },
     messages: [{
@@ -23,10 +23,11 @@ const GroupSchema = new Schema<IGroup>(
     }],
     admin: {
       type: SchemaTypes.ObjectId,
-      ref: 'User', required: true
+      ref: 'User',
+      required: true
     }
   },
   { versionKey: false }
-);
+)
 
-export const GroupModel = model<IGroup>('Group', GroupSchema);
+export const GroupModel = model<IGroup>('Group', GroupSchema)
