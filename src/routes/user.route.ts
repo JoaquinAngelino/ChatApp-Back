@@ -6,11 +6,11 @@ const router: Router = Router()
 /*
     USER ROUTES
 */
-router.get('/user/:userID', UserValidations.validateGetUser, UserController.getUser)
+router.get('/', UserValidations.validateGetUser, UserController.getUser)
 
-router.post('/user', UserValidations.validatePostUser, UserController.postUser)
+router.post('/', UserValidations.validatePostUser, UserController.postUser)
 
-router.patch('user/:userID', UserValidations.validateUserUpdate, UserController.updateUser)
+router.patch('/:id', UserValidations.validateUserUpdate, UserController.updateUser)
 
 // router.delete('/user/:userID', UserController.deleteUser)
 

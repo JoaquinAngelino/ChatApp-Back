@@ -18,9 +18,6 @@ export const TokenHandler = {
 
   generateToken (obj: object): string {
     return jwt.sign(obj, SECRET)
-  },
-
-  async deleteToken () {
-
   }
+
 }

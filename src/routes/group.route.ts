@@ -13,8 +13,8 @@ router.post('/', GroupValidations.validatePostGroup, GroupController.postGroup)
 router.post('/message/:groupId', GroupValidations.validateAddMessage, GroupController.addMessage)
 
 // DELETE /message/:chatId
-router.delete('/message/:groupId', GroupValidations.validateDeleteMessage, GroupController.deleteMessage)
+// router.delete('/message/:groupId', GroupValidations.validateDeleteMessage, GroupController.deleteMessage)
 
-router.delete('/:groupId', GroupValidations.validateDeleteGroup, GroupController.deleteGroup)
+// router.delete('/:groupId', GroupValidations.validateDeleteGroup, GroupController.deleteGroup)
 
 export default router

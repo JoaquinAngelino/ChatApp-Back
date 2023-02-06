@@ -1,13 +1,12 @@
 import { type Request, type Response, type NextFunction } from 'express'
 import { isObjectId } from '../../modelValidation/isObjectId'
-import { isUser } from '../../modelValidation/isUser'
-import { validateUserSchema } from '../schema.validate'
+import { VALID_USER_GET, VALID_USER_POST, VALID_USER_UPDATE } from '../schema.validate'
 
 export const UserValidations = {
 
   //    VALIDATE POST /USER
   validatePostUser: async (req: Request, res: Response, next: NextFunction) => {
-    if (!validateUserSchema(req.body)) {
+    if (!VALID_USER_POST(req.body)) {
       return res.status(400).send('Bad Request')
     }
     next()
@@ -15,7 +14,7 @@ export const UserValidations = {
 
   //    VALIDATE GET /USER
   validateGetUser: async (req: Request, res: Response, next: NextFunction) => {
-    if (!isObjectId(req.params.chatId)) {
+    if (!VALID_USER_GET(req.body)) {
       return res.status(400).send('Bad Request')
     }
     next()
@@ -23,7 +22,7 @@ export const UserValidations = {
 
   //    VALIDATE UPDATE /USER
   validateUserUpdate: async (req: Request, res: Response, next: NextFunction) => {
-    if (!isUser(req.body) || !isObjectId(req.params.userId)) {
+    if (!VALID_USER_UPDATE(req.body) || !isObjectId(req.params.id)) {
       return res.status(400).send('Bad Request')
     }
     next()

@@ -14,6 +14,7 @@ export const UserController = {
       res.status(500).send({ message: (error as Error).message })
     }
   },
+
   //  *  GET USER
   // return a user info with all the groups/chats
   async getUser (req: Request, res: Response) {

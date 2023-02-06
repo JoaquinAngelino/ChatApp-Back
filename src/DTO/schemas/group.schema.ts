@@ -1,5 +1,5 @@
 
-export const GroupSchema = {
+export const GroupSchemas = {
   group: {
     type: 'object',
     properties: {

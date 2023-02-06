@@ -1,5 +1,5 @@
 
-export const SessionSchema = {
+export const SessionSchemas = {
   type: 'object',
   properties: {
     name: { type: 'string' },
