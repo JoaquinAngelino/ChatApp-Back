@@ -31,9 +31,10 @@ export const UserController = {
   // modifies an existing user
   async updateUser (req: Request, res: Response) {
     const user = req.body
+    const id = req.params.id
     try {
-      const chat = await UserDAO.updateUser(user)
-      return res.status(200).json(chat)
+      const newUser = await UserDAO.updateUser(id, user)
+      return res.status(200).json(newUser)
     } catch (error) {
       res.status(500).send({ message: (error as Error).message })
     }

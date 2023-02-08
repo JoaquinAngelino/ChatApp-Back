@@ -17,7 +17,10 @@ export const UserDAO = {
     return created as IUser
   },
 
-  async updateUser (user: IUser) {
+  async updateUser (id: string, user: IUser) {
+    const updated = UserModel.findByIdAndUpdate(id, user)
+    if (updated == null) { throw new Error('Usuario no actualizado') }
+
     return user
   },
 
