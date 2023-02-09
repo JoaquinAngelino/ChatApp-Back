@@ -16,7 +16,7 @@ export const ChatDAO = {
     user.chats.push(created.id)
     await user.save()
 
-    return created as IChat
+    return created
   },
 
   async addMessage (chatId: string, message: IMessage) {
