@@ -8,18 +8,15 @@ import groupRoutes from './routes/group.route'
 import sessionRoutes from './routes/session.route'
 // import { proxyConfig } from './config';
 import morgan from 'morgan'
+import { corsConfig, rateLimitConfig } from './config'
 
 const app = express()
 
-app.use(express.json())
-app.use(
-  cors({
-    origin: '*'
-  })
-)
 app.use(helmet())
+app.use(express.json())
+app.use(cors(corsConfig))
 app.use(morgan('dev'))
-app.use(rateLimit({ windowMs: 5 * 60 * 1000, max: 20 }))
+app.use(rateLimit(rateLimitConfig))
 // app.use(proxyConfig)
 app.use('/chat', chatRoutes)
 app.use('/user', userRoutes)
